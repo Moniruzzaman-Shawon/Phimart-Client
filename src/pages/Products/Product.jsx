@@ -6,6 +6,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import ErrorAlert from "../../components/ErrorAlert";
+import apiClient from "../../services/api-client";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
@@ -14,8 +15,8 @@ const Product = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get("http://127.0.0.1:8000/api/v1/products/")
+    apiClient
+      .get("/products/")
       .then((res) => setProducts(res.data.results))
       .catch((err) => setError(err.messege))
       .finally(() => setLoading(false));
