@@ -42,32 +42,30 @@ http://localhost:3000
 or 
 Any other else
 
-📦 Available Scripts
+## 📜 Available Scripts
 
-npm start – Runs the app in development mode
+- `npm run dev` – Runs the app in development mode  
+- `npm run build` – Builds the app for production  
+- `npm test` – Runs test cases (if any)  
+- `npm start` – (Optional) Runs production build locally  
 
-npm run build – Builds the app for production
+## 🛠️ Built With
 
-npm test – Runs test cases (if any)
+- [React](https://reactjs.org/) – Frontend library  
+- [Node.js](https://nodejs.org/) – JavaScript runtime  
+- [Vite](https://vitejs.dev/) – Development build tool  
+- [npm](https://www.npmjs.com/) / [Yarn](https://yarnpkg.com/) – Package managers  
 
-🛠️ Built With
+## 🤝 Contributing
 
-React
- – Frontend library
-
-Node.js
- – JavaScript runtime
-
-npm
- / Yarn
- – Package managers
-
-🤝 Contributing
-
-Pull requests are welcome!
+Contributions, issues, and feature requests are welcome!  
 For major changes, please open an issue first to discuss what you’d like to change.
 
+---
+
 ## 📬 Contact
+
 For any inquiries, feel free to reach out:  
-**Email:** [m.zaman.djp@gmail.com](mailto:m.zaman.djp@gmail.com)
+📧 **Email:** [m.zaman.djp@gmail.com](mailto:m.zaman.djp@gmail.com)  
+🔗 **GitHub:** [Moniruzzaman-Shawon](https://github.com/Moniruzzaman-Shawon)
 
