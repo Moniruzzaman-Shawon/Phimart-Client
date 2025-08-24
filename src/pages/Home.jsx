@@ -1,4 +1,5 @@
 import HeroCarousel from "../components/Carousel/HeroCarousel";
+import DiscountSection from "../components/Discount/DiscountSection";
 import Featues from "../components/Featues";
 import Product from "./Products/Product";
 
@@ -9,6 +10,7 @@ const Home = () => {
             <HeroCarousel></HeroCarousel>
             <Featues></Featues>
             <Product/>
+            <DiscountSection/>
         </div>
     );
 };
