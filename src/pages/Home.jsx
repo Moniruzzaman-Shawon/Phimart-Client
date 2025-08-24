@@ -1,5 +1,6 @@
 import HeroCarousel from "../components/Carousel/HeroCarousel";
 import Featues from "../components/Featues";
+import Product from "./Products/Product";
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
             <HeroCarousel></HeroCarousel>
             <Featues></Featues>
+            <Product/>
         </div>
     );
 };
