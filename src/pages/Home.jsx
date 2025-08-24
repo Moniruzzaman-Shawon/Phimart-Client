@@ -1,11 +1,12 @@
-import CarouselSlide from "../components/Carousel/CarouselSlide";
 import HeroCarousel from "../components/Carousel/HeroCarousel";
+import Featues from "../components/Featues";
 
 
 const Home = () => {
     return (
         <div>
             <HeroCarousel></HeroCarousel>
+            <Featues></Featues>
         </div>
     );
 };
