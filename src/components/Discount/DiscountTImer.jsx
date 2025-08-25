@@ -1,29 +1,30 @@
 import { useEffect, useState } from "react";
 
-const DiscountTImer = () => {
-    const targetDate = new Date().getTime() + 1000 * 60 * 60 * 24 * 25;
+const DiscountTimer = () => {
+  const targetDate = new Date().getTime() + 1000 * 60 * 60 * 24 * 25;
 
-    const getTimeRemaining = () => {
-        const now = new Date().getTime();
-        const difference = targetDate - now;
+  const getTimeRemaining = () => {
+    const now = new Date().getTime();
+    const difference = Math.max(targetDate - now, 0);
 
-        return {
-            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-            minutes: Math.floor((difference / ( 1000 * 60))% 60),
-            seconds: Math.floor((difference / 1000) % 60),
-        }
-    }
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / (1000 * 60)) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  };
 
-    const [timeLeft, setTimeLeft] = useState(getTimeRemaining());
+  const [timeLeft, setTimeLeft] = useState(getTimeRemaining());
 
-    useEffect(()=>{
-        const timer = setInterval(()=> {
-            setTimeLeft(getTimeRemaining());
-        }, 1000);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(getTimeRemaining());
+    }, 1000);
 
-        return () => clearInterval(timer); //cleanup on unmount
-    },[]);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="flex justify-center md:justify-start space-x-8 text-2xl font-semibold my-6">
       <div>
@@ -50,4 +51,4 @@ const DiscountTImer = () => {
   );
 };
 
-export default DiscountTImer;
+export default DiscountTimer;
