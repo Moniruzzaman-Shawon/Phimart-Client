@@ -1,8 +1,8 @@
 // HeroCarousel.jsx
 import { Swiper, SwiperSlide } from 'swiper/react';
-import book from '../../assets/images/book.png';
-import fashion from '../../assets/images/fashion.png';
-import technology from '../../assets/images/technology.png';
+import book from '../../../assets/images/book.png';
+import fashion from '../../../assets/images/fashion.png';
+import technology from '../../../assets/images/technology.png';
 
 
 // Swiper styles

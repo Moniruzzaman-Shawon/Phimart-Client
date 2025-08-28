@@ -1,4 +1,4 @@
-import bgImg from '../../assets/images/banner-image-bg.jpg'
+import bgImg from '../../../assets/images/banner-image-bg.jpg'
 
 
 // eslint-disable-next-line react/prop-types

@@ -1,7 +1,7 @@
-import HeroCarousel from "../components/Carousel/HeroCarousel";
-import Category from "../components/Categories/Category";
-import DiscountSection from "../components/Discount/DiscountSection";
-import Featues from "../components/Featues";
+import HeroCarousel from "../components/Home/Carousel/HeroCarousel";
+import Category from "../components/Home/Categories/Category";
+import DiscountSection from "../components/Home/Discount/DiscountSection";
+import Featues from "../components/Home/Featues";
 import Product from "./Products/Product";
 
 
