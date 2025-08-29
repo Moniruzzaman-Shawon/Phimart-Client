@@ -48,7 +48,7 @@ const FilterSection = ({
           />
           <input
             type="range"
-            min={priceRange[0]}
+            min={priceRange[0]} 
             max="1000"
             step="10"
             value={priceRange[1]}
