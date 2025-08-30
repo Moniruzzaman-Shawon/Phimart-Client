@@ -1,4 +1,5 @@
 import { FiMenu, FiX } from "react-icons/fi";
+import { Link } from "react-router";
 
 const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
