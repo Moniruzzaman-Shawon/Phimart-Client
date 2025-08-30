@@ -1,8 +1,9 @@
 import { Link } from "react-router";
 import useAuthContext from "../hooks/useAuthContext";
+import { ShoppingCart } from "lucide-react";
 
 const Navbar = () => {
-  const {user} = useAuthContext();
+  const {user, logoutUser} = useAuthContext();
   console.log("From Navbar",user);
   return (
     <div>
@@ -50,6 +51,7 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">
+            <ShoppingCart />
             Phi<span className="text-red-500">MART</span>
           </a>
         </div>
@@ -146,7 +148,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={logoutUser}>Logout</a>
               </li>
             </ul>
           </div>

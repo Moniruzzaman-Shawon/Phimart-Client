@@ -1,33 +1,64 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router";
+import useAuthContext from "../hooks/useAuthContext";
+import { useState } from "react";
+import ErrorAlert from "../components/ErrorAlert";
 
 const Register = () => {
+  const { registerUser, errorMsg } = useAuthContext();
+  const [successMsg, setSuccessMsg] = useState("");
+
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log("Form Submitted ✅", data);
-    // Example: simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    alert("Registration successful!");
+    delete data.confirm_password;
+    try {
+      const response = await registerUser(data);
+      console.log(response);
+      if (response.success) {
+        setSuccessMsg(response.message);
+        // setTimeout(() => navigate("/login"), 3000);
+      }
+    } catch (error) {
+      console.log("Registration failed", error);
+    }
   };
-
-  const password = watch("password");
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-12 bg-base-200">
       <div className="card w-full max-w-md bg-base-100 shadow-xl">
         <div className="card-body">
-          {/* Heading */}
-          <h2 className="card-title text-2xl font-bold">Sign Up</h2>
-          <p className="text-base-content/70">Create an account to get started</p>
+          {errorMsg && <ErrorAlert error={errorMsg} />}
+          {successMsg && (
+            <div role="alert" className="alert alert-success">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 shrink-0 stroke-current"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>{successMsg}</span>
+            </div>
+          )}
 
-          {/* Form */}
-          <form className="space-y-4 mt-4" onSubmit={handleSubmit(onSubmit)}>
-            {/* First Name */}
+          <h2 className="card-title text-2xl font-bold">Sign Up</h2>
+          <p className="text-base-content/70">
+            Create an account to get started
+          </p>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
             <div className="form-control">
               <label className="label" htmlFor="first_name">
                 <span className="label-text">First Name</span>
@@ -37,14 +68,17 @@ const Register = () => {
                 type="text"
                 placeholder="John"
                 className="input input-bordered w-full"
-                {...register("first_name", { required: "First Name is required" })}
+                {...register("first_name", {
+                  required: "First Name is Required",
+                })}
               />
               {errors.first_name && (
-                <span className="text-error text-sm">{errors.first_name.message}</span>
+                <span className="label-text-alt text-error">
+                  {errors.first_name.message}
+                </span>
               )}
             </div>
 
-            {/* Last Name */}
             <div className="form-control">
               <label className="label" htmlFor="last_name">
                 <span className="label-text">Last Name</span>
@@ -54,14 +88,17 @@ const Register = () => {
                 type="text"
                 placeholder="Doe"
                 className="input input-bordered w-full"
-                {...register("last_name", { required: "Last Name is required" })}
+                {...register("last_name", {
+                  required: "Last Name is Required",
+                })}
               />
               {errors.last_name && (
-                <span className="text-error text-sm">{errors.last_name.message}</span>
+                <span className="label-text-alt text-error">
+                  {errors.last_name.message}
+                </span>
               )}
             </div>
 
-            {/* Email */}
             <div className="form-control">
               <label className="label" htmlFor="email">
                 <span className="label-text">Email</span>
@@ -71,14 +108,18 @@ const Register = () => {
                 type="email"
                 placeholder="name@example.com"
                 className="input input-bordered w-full"
-                {...register("email", { required: "Email is required" })}
+                {...register("email", {
+                  required: "Email is Required",
+                })}
               />
               {errors.email && (
-                <span className="text-error text-sm">{errors.email.message}</span>
+                <span className="label-text-alt text-error">
+                  {errors.email.message}
+                </span>
               )}
+              {/* <p>Email: {watch("email")}</p> */}
             </div>
 
-            {/* Address */}
             <div className="form-control">
               <label className="label" htmlFor="address">
                 <span className="label-text">Address</span>
@@ -92,7 +133,6 @@ const Register = () => {
               />
             </div>
 
-            {/* Phone Number */}
             <div className="form-control">
               <label className="label" htmlFor="phone_number">
                 <span className="label-text">Phone Number</span>
@@ -106,7 +146,6 @@ const Register = () => {
               />
             </div>
 
-            {/* Password */}
             <div className="form-control">
               <label className="label" htmlFor="password">
                 <span className="label-text">Password</span>
@@ -125,11 +164,12 @@ const Register = () => {
                 })}
               />
               {errors.password && (
-                <span className="text-error text-sm">{errors.password.message}</span>
+                <span className="label-text-alt text-error">
+                  {errors.password.message}
+                </span>
               )}
             </div>
 
-            {/* Confirm Password */}
             <div className="form-control">
               <label className="label" htmlFor="confirmPassword">
                 <span className="label-text">Confirm Password</span>
@@ -142,33 +182,25 @@ const Register = () => {
                 {...register("confirm_password", {
                   required: "Confirm Password is required",
                   validate: (value) =>
-                    value === password || "Passwords do not match",
+                    value === watch("password") || "Password do not match",
                 })}
               />
               {errors.confirm_password && (
-                <span className="text-error text-sm">
+                <span className="label-text-alt text-error">
                   {errors.confirm_password.message}
                 </span>
               )}
             </div>
 
-            {/* Submit Button */}
-            <button type="submit" className="btn btn-primary w-full" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <span className="loading loading-spinner loading-sm"></span>
-              ) : (
-                "Register"
-              )}
-            </button>
+            <button type="submit" className="btn btn-primary w-full"></button>
           </form>
 
-          {/* Footer link */}
           <div className="text-center mt-4">
             <p className="text-base-content/70">
               Already have an account?{" "}
-              <a href="/login" className="link link-primary">
+              <Link to="/login" className="link link-primary">
                 Sign in
-              </a>
+              </Link>
             </p>
           </div>
         </div>
