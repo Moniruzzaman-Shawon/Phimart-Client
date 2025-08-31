@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import PrivateRoute from "../components/PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Profile from "../pages/Profile";
 
 const AppRoutes = () => {
   return (
@@ -24,17 +25,16 @@ const AppRoutes = () => {
       </Route>
 
       {/* Protected dashboard routes */}
-      <Route 
-      path="dashboard"
-        element={<PrivateRoute>
+      <Route
+        path="dashboard"
+        element={
+          <PrivateRoute>
             <DashboardLayout />
-                </PrivateRoute>}>
-            <Route
-            index
-            element={
-                <Dashboard />
-            }
-        />
+          </PrivateRoute>
+        }
+      >
+        <Route index element={<Dashboard />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>
   );
