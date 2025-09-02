@@ -1,4 +1,4 @@
-import { set, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 import useAuthContext from "../hooks/useAuthContext";
 import ErrorAlert from "../components/ErrorAlert";
 import { useNavigate } from "react-router";
@@ -11,7 +11,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const {user, errorMsg, loginUser} = useAuthContext();
+  const { errorMsg, loginUser} = useAuthContext();
 
     const [loading, setLoading] = useState(false);
   

@@ -1,12 +1,12 @@
 const StatCard = ({ icon: Icon, title, value }) => {
   return (
-    <div className="card bg-white shadow hover:shadow-lg transition p-5 rounded-lg flex items-center gap-4">
-      <div className="text-primary text-3xl">
-        <Icon />
-      </div>
-      <div>
-        <p className="text-gray-500 text-sm">{title}</p>
-        <h3 className="text-xl font-semibold">{value}</h3>
+    <div className="card bg-base-100 shadow-sm">
+      <div className="card-body p-4">
+        <div className="flex items-center gap-2">
+          <Icon className="h-5 w-5 text-primary" />
+          <h3 className="text-sm font-medium">{title}</h3>
+        </div>
+        <p className="mt-2 text-2xl font-bold">{value}</p>
       </div>
     </div>
   );

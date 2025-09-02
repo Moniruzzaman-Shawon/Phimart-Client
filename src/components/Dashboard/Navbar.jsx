@@ -1,16 +1,17 @@
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router";
 
-const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
+const Navbar = ({ sidebarOpen }) => {
   return (
-    <div className="navbar bg-base-100 border-b px-4">
+    <div className="navbar bg-base-100 border-b">
       <div className="flex-none lg:hidden">
-        <button
-          className="btn btn-square btn-ghost"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          {sidebarOpen ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
-        </button>
+        <label htmlFor="drawer-toggle" className="btn btn-square btn-ghost">
+          {sidebarOpen ? (
+            <FiX className="h-5 w-5" />
+          ) : (
+            <FiMenu className="h-5 w-5" />
+          )}
+        </label>
       </div>
       <div className="flex-1">
         <h2 className="text-lg font-semibold">Dashboard</h2>
@@ -27,11 +28,20 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li><Link to="/profile">Profile</Link></li>
-            <li><Link to="/settings">Settings</Link></li>
-            <li><button>Logout</button></li>
+            <li>
+              <Link href="/profile" className="justify-between">
+                Profile
+                <span className="badge">New</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/settings">Settings</Link>
+            </li>
+            <li>
+              <button>Logout</button>
+            </li>
           </ul>
         </div>
       </div>
